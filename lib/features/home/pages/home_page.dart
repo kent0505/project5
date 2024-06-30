@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/widgets/custom_scaffold.dart';
 import '../../activities/pages/activities_page.dart';
-import '../../settings/settings_page.dart';
+import 'settings_page.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/nav_bar.dart';
 
