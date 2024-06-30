@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/config/app_colors.dart';
 import '../../core/widgets/buttons/primary_button.dart';
@@ -80,12 +81,13 @@ class _OnboardPageState extends State<OnboardPage> {
                       'Keep an eye on your monetary\nassets, don\'t miss details',
                   current: true,
                   onPressed: () {
-                    controller.animateToPage(
-                      controller.page!.toInt() - 1,
-                      duration: const Duration(milliseconds: 200),
-                      curve: Curves.easeIn,
-                    );
-                    log(controller.page!.toInt().toString());
+                    context.go('/user');
+                    // controller.animateToPage(
+                    //   controller.page!.toInt() - 1,
+                    //   duration: const Duration(milliseconds: 200),
+                    //   curve: Curves.easeIn,
+                    // );
+                    // log(controller.page!.toInt().toString());
                   },
                 ),
               ],
@@ -112,51 +114,51 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Spacer(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text(
-            title,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        children: [
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 32,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            subtitle,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 32,
+            style: TextStyle(
+              color: AppColors.white50,
+              fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
           ),
-        ),
-        const SizedBox(height: 3),
-        Text(
-          subtitle,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: AppColors.white50,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
+          const SizedBox(height: 61),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _PageIndicator(current: current),
+              const SizedBox(width: 7),
+              _PageIndicator(current: !current),
+            ],
           ),
-        ),
-        const SizedBox(height: 61),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _PageIndicator(current: current),
-            const SizedBox(width: 7),
-            _PageIndicator(current: !current),
-          ],
-        ),
-        const SizedBox(height: 45),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: PrimaryButton(
+          const SizedBox(height: 45),
+          PrimaryButton(
             title: 'Next',
             // active: false,
             onPressed: onPressed,
           ),
-        ),
-        const SizedBox(height: 67),
-      ],
+          const SizedBox(height: 67),
+        ],
+      ),
     );
   }
 }
