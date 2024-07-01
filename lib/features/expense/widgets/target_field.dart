@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../core/config/app_colors.dart';
 
@@ -24,9 +25,9 @@ class TargetField extends StatelessWidget {
       child: TextField(
         controller: controller,
         textAlign: TextAlign.center,
-        // inputFormatters: [
-        //   LengthLimitingTextInputFormatter(1),
-        // ],
+        inputFormatters: [
+          LengthLimitingTextInputFormatter(20),
+        ],
         textCapitalization: TextCapitalization.sentences,
         style: const TextStyle(
           color: Colors.white,

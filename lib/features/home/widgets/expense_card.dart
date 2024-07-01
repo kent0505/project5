@@ -29,12 +29,14 @@ class ExpenseCard extends StatelessWidget {
           children: [
             const SizedBox(width: 20),
             SizedBox(
-              width: 71,
+              width: 81,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     expense.target,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 15,
@@ -71,7 +73,7 @@ class ExpenseCard extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            const SizedBox(width: 11),
+            const SizedBox(width: 21),
             Container(
               height: 26,
               width: 71,

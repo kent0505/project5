@@ -14,8 +14,8 @@ Future<void> getData() async {
   onboarding = prefs.getBool('onboarding') ?? true;
   userName = prefs.getString('userName') ?? 'User';
   userCurrency = prefs.getString('userCurrency') ?? '\$';
-  userExpense = prefs.getInt('userExpense') ?? 4000;
-  userIncome = prefs.getInt('userIncome') ?? 5000;
+  userExpense = prefs.getInt('userExpense') ?? 0;
+  userIncome = prefs.getInt('userIncome') ?? 0;
 
   log(onboarding.toString());
   log(userName);

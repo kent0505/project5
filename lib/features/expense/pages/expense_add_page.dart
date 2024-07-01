@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/utils.dart';
 import '../../../core/widgets/buttons/primary_button.dart';
-import '../../../core/widgets/custom_app_bar.dart';
-import '../../../core/widgets/custom_scaffold.dart';
+import '../../../core/widgets/custom/custom_app_bar.dart';
+import '../../../core/widgets/custom/custom_scaffold.dart';
 import '../../../core/widgets/your_version_field.dart';
 import '../../../core/widgets/your_version_text.dart';
 import '../bloc/expense_bloc.dart';

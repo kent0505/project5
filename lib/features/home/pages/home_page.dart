@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../../../core/utils.dart';
-import '../../../core/widgets/custom_scaffold.dart';
+import '../../../core/widgets/custom/custom_scaffold.dart';
 import '../../activities/pages/activities_page.dart';
 import '../../expense/bloc/expense_bloc.dart';
 import '../bloc/home_bloc.dart';

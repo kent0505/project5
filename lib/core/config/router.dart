@@ -1,12 +1,12 @@
 import 'package:go_router/go_router.dart';
 
-import '../features/expense/models/expense.dart';
-import '../features/expense/pages/expense_add_page.dart';
-import '../features/expense/pages/expense_edit_page.dart';
-import '../features/splash/splash_page.dart';
-import '../features/splash/onboard_page.dart';
-import '../features/splash/user_page.dart';
-import '../features/home/pages/home_page.dart';
+import '../../features/expense/models/expense.dart';
+import '../../features/expense/pages/expense_add_page.dart';
+import '../../features/expense/pages/expense_edit_page.dart';
+import '../../features/splash/splash_page.dart';
+import '../../features/splash/onboard_page.dart';
+import '../../features/splash/user_page.dart';
+import '../../features/home/pages/home_page.dart';
 
 final routerConfig = GoRouter(
   initialLocation: '/',

@@ -7,7 +7,7 @@ import 'package:project5/core/widgets/your_version_text.dart';
 import '../../core/config/app_colors.dart';
 import '../../core/utils.dart';
 import '../../core/widgets/buttons/primary_button.dart';
-import '../../core/widgets/custom_scaffold.dart';
+import '../../core/widgets/custom/custom_scaffold.dart';
 import '../../core/widgets/your_version_field.dart';
 
 class UserPage extends StatefulWidget {

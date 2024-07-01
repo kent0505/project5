@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project5/features/activities/widgets/income_info_card.dart';
 
 import '../../../core/config/app_colors.dart';
-import '../../../core/widgets/custom_scaffold.dart';
+import '../../../core/widgets/custom/custom_scaffold.dart';
 import '../../../core/widgets/page_title.dart';
 
 class ActivitiesPage extends StatelessWidget {
