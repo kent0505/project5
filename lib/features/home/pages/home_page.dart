@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../../../core/utils.dart';
@@ -102,7 +103,7 @@ class _HomePage extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      '${userIncome - userExpence}$userCurrency',
+                      '${userIncome - userExpense}$userCurrency',
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 38,
@@ -142,12 +143,16 @@ class _HomePage extends StatelessWidget {
               children: [
                 _ExpenceIncomeAddButton(
                   title: 'Income',
-                  onPressed: () {},
+                  onPressed: () {
+                    context.push('/expense', extra: false);
+                  },
                 ),
                 const SizedBox(width: 15),
                 _ExpenceIncomeAddButton(
-                  title: 'Expence',
-                  onPressed: () {},
+                  title: 'Expense',
+                  onPressed: () {
+                    context.push('/expense', extra: true);
+                  },
                 ),
               ],
             ),

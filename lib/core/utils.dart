@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 bool onboarding = true;
 String userName = '';
 String userCurrency = '\$';
-int userExpence = 0;
+int userExpense = 0;
 int userIncome = 0;
 
 Future<void> getData() async {
@@ -14,13 +14,13 @@ Future<void> getData() async {
   onboarding = prefs.getBool('onboarding') ?? true;
   userName = prefs.getString('userName') ?? 'User';
   userCurrency = prefs.getString('userCurrency') ?? '\$';
-  userExpence = prefs.getInt('userExpence') ?? 4000;
+  userExpense = prefs.getInt('userExpense') ?? 4000;
   userIncome = prefs.getInt('userIncome') ?? 5000;
 
   log(onboarding.toString());
   log(userName);
   log(userCurrency);
-  log(userExpence.toString());
+  log(userExpense.toString());
   log(userIncome.toString());
 }
 

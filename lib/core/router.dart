@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+import '../features/expense/pages/expense_add_page.dart';
 import '../features/splash/splash_page.dart';
 import '../features/splash/onboard_page.dart';
 import '../features/splash/user_page.dart';
@@ -23,6 +24,12 @@ final routerConfig = GoRouter(
     GoRoute(
       path: '/home',
       builder: (context, state) => const HomePage(),
+    ),
+    GoRoute(
+      path: '/expense',
+      builder: (context, state) => ExpenseAddPage(
+        expense: state.extra as bool,
+      ),
     ),
   ],
 );
