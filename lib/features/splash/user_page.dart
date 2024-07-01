@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:project5/core/widgets/your_version_text.dart';
 
 import '../../core/config/app_colors.dart';
 import '../../core/utils.dart';
 import '../../core/widgets/buttons/primary_button.dart';
 import '../../core/widgets/custom_scaffold.dart';
+import '../../core/widgets/your_version_field.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key});
@@ -226,6 +228,7 @@ class _CurrencySelectButtonState extends State<_CurrencySelectButton> {
           const SizedBox(height: 10),
           _CurrencyButton(
             title: '(\$)',
+            current: widget.controller.text == '\$',
             onPressed: () {
               setState(() {
                 widget.controller.text = '\$';
@@ -237,6 +240,7 @@ class _CurrencySelectButtonState extends State<_CurrencySelectButton> {
           const SizedBox(height: 10),
           _CurrencyButton(
             title: '(€)',
+            current: widget.controller.text == '€',
             onPressed: () {
               setState(() {
                 widget.controller.text = '€';
@@ -245,23 +249,13 @@ class _CurrencySelectButtonState extends State<_CurrencySelectButton> {
               });
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
-            child: Row(
-              children: [
-                Text(
-                  'Your version...',
-                  style: TextStyle(
-                    color: AppColors.white50,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
+            child: YourVersionText(),
           ),
-          _YourVersionField(
+          YourVersionField(
             controller: widget.controller,
+            maxLen: 1,
             onChanged: () {
               widget.onChanged();
             },
@@ -275,10 +269,12 @@ class _CurrencySelectButtonState extends State<_CurrencySelectButton> {
 class _CurrencyButton extends StatelessWidget {
   const _CurrencyButton({
     required this.title,
+    required this.current,
     required this.onPressed,
   });
 
   final String title;
+  final bool current;
   final void Function() onPressed;
 
   @override
@@ -291,7 +287,7 @@ class _CurrencyButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
           width: 2,
-          color: const Color(0xff500018),
+          color: current ? const Color(0xff500018) : Colors.transparent,
         ),
       ),
       child: CupertinoButton(
@@ -307,59 +303,6 @@ class _CurrencyButton extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _YourVersionField extends StatelessWidget {
-  const _YourVersionField({
-    required this.controller,
-    required this.onChanged,
-  });
-
-  final TextEditingController controller;
-  final void Function() onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 45,
-      decoration: BoxDecoration(
-        color: AppColors.card,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: TextField(
-        controller: controller,
-        textAlign: TextAlign.center,
-        inputFormatters: [
-          LengthLimitingTextInputFormatter(1),
-        ],
-        textCapitalization: TextCapitalization.sentences,
-        style: const TextStyle(
-          color: Colors.white,
-        ),
-        decoration: InputDecoration(
-          hintText: 'Currency',
-          hintStyle: TextStyle(
-            color: AppColors.white50,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent),
-          ),
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent),
-          ),
-        ),
-        onTapOutside: (event) {
-          FocusManager.instance.primaryFocus?.unfocus();
-        },
-        onChanged: (value) {
-          controller.text = value;
-          onChanged();
-        },
       ),
     );
   }

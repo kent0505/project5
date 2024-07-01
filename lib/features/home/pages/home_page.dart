@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:project5/features/home/widgets/expense_card.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../../../core/utils.dart';
@@ -10,6 +9,7 @@ import '../../activities/pages/activities_page.dart';
 import '../../expense/bloc/expense_bloc.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/expense_add_button.dart';
+import '../widgets/expense_card.dart';
 import '../widgets/expense_data.dart';
 import '../widgets/nav_bar.dart';
 import '../widgets/no_data.dart';
@@ -115,14 +115,14 @@ class _HomePage extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              const ExpenseData(
+              ExpenseData(
                 expence: true,
-                number: 4000,
+                number: userExpense,
               ),
               const SizedBox(width: 12),
-              const ExpenseData(
+              ExpenseData(
                 expence: false,
-                number: 5000,
+                number: userIncome,
               ),
               const SizedBox(width: 20),
             ],
@@ -175,7 +175,10 @@ class _HomePage extends StatelessWidget {
 
                 return Expanded(
                   child: ListView(
-                    padding: const EdgeInsets.all(30),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 20,
+                    ),
                     children: [
                       ...List.generate(
                         state.expenses.length,

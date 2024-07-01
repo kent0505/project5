@@ -34,6 +34,7 @@ class PrimaryButton extends StatelessWidget {
               color: active ? Colors.white : AppColors.white50,
               fontSize: 16,
               fontWeight: FontWeight.w600,
+              fontFamily: 'SFPro',
             ),
           ),
         ),

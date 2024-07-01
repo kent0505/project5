@@ -15,6 +15,7 @@ class ExpenseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
+      margin: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
         color: AppColors.card,
         borderRadius: BorderRadius.circular(32),
@@ -43,6 +44,7 @@ class ExpenseCard extends StatelessWidget {
                   ),
                   Container(
                     height: 1,
+                    margin: const EdgeInsets.symmetric(vertical: 2),
                     width: 65,
                     color: Colors.white,
                   ),

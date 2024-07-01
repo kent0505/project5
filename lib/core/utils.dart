@@ -29,6 +29,7 @@ Future<void> saveUser(String name, String currency) async {
   prefs.setString('userName', name);
   prefs.setString('userCurrency', currency);
   prefs.setBool('onboarding', false);
+  await getData();
 }
 
 int getCurrentTimestamp() {
