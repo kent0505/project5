@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/config/app_colors.dart';
@@ -331,6 +332,9 @@ class _YourVersionField extends StatelessWidget {
       child: TextField(
         controller: controller,
         textAlign: TextAlign.center,
+        inputFormatters: [
+          LengthLimitingTextInputFormatter(1),
+        ],
         textCapitalization: TextCapitalization.sentences,
         style: const TextStyle(
           color: Colors.white,
@@ -353,6 +357,7 @@ class _YourVersionField extends StatelessWidget {
           FocusManager.instance.primaryFocus?.unfocus();
         },
         onChanged: (value) {
+          controller.text = value;
           onChanged();
         },
       ),
