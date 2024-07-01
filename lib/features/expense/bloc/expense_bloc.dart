@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/utils.dart';
 import '../models/expense.dart';
 import '../service/expense_service.dart';
 
@@ -9,35 +10,24 @@ part 'expense_state.dart';
 class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
   final _service = ExpenseService();
   List<Expense> _expenses = [];
-  int _balance = 0;
 
   ExpenseBloc() : super(ExpenseInitial()) {
     on<GetExpensesEvent>((event, emit) async {
       if (_service.expenses.isEmpty) {
         _expenses = await _service.getExpenses();
-        _balance = 0;
-        for (Expense expense in _expenses) {
-          _balance = _balance + expense.amount;
-        }
-        emit(ExpensesLoadedState(
-          expenses: _expenses,
-          balance: _balance,
-        ));
+        getExpenses(_expenses);
+        emit(ExpensesLoadedState(expenses: _expenses));
       } else {
-        emit(ExpensesLoadedState(
-          expenses: _expenses,
-          balance: _balance,
-        ));
+        getExpenses(_expenses);
+        emit(ExpensesLoadedState(expenses: _expenses));
       }
     });
 
     on<AddExpenseEvent>((event, emit) async {
       _service.expenses.add(event.expense);
       _expenses = await _service.updateExpenses();
-      emit(ExpensesLoadedState(
-        expenses: _expenses,
-        balance: _balance,
-      ));
+      getExpenses(_expenses);
+      emit(ExpensesLoadedState(expenses: _expenses));
     });
 
     on<EditExpenseEvent>((event, emit) async {
@@ -50,19 +40,15 @@ class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
         }
       }
       _expenses = await _service.updateExpenses();
-      emit(ExpensesLoadedState(
-        expenses: _expenses,
-        balance: _balance,
-      ));
+      getExpenses(_expenses);
+      emit(ExpensesLoadedState(expenses: _expenses));
     });
 
     on<DeleteExpenseEvent>((event, emit) async {
       _service.expenses.removeWhere((element) => element.id == event.id);
       _expenses = await _service.updateExpenses();
-      emit(ExpensesLoadedState(
-        expenses: _expenses,
-        balance: _balance,
-      ));
+      getExpenses(_expenses);
+      emit(ExpensesLoadedState(expenses: _expenses));
     });
   }
 }

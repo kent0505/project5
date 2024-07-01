@@ -9,8 +9,8 @@ import '../../activities/pages/activities_page.dart';
 import '../../expense/bloc/expense_bloc.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/expense_add_button.dart';
-import '../widgets/expense_card.dart';
 import '../widgets/expense_data.dart';
+import '../widgets/expenses_list.dart';
 import '../widgets/nav_bar.dart';
 import '../widgets/no_data.dart';
 import 'settings_page.dart';
@@ -93,39 +93,43 @@ class _HomePage extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          Row(
-            children: [
-              const SizedBox(width: 20),
-              Container(
-                height: 78,
-                width: 182,
-                decoration: BoxDecoration(
-                  color: AppColors.card,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Center(
-                  child: Text(
-                    '${userIncome - userExpense}$userCurrency',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 38,
-                      fontWeight: FontWeight.w500,
+          BlocBuilder<ExpenseBloc, ExpenseState>(
+            builder: (context, state) {
+              return Row(
+                children: [
+                  const SizedBox(width: 20),
+                  Container(
+                    height: 78,
+                    width: 182,
+                    decoration: BoxDecoration(
+                      color: AppColors.card,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        '${userIncome - userExpense}$userCurrency',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 38,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-              const Spacer(),
-              ExpenseData(
-                expence: true,
-                number: userExpense,
-              ),
-              const SizedBox(width: 12),
-              ExpenseData(
-                expence: false,
-                number: userIncome,
-              ),
-              const SizedBox(width: 20),
-            ],
+                  const Spacer(),
+                  ExpenseData(
+                    expence: true,
+                    number: userExpense,
+                  ),
+                  const SizedBox(width: 12),
+                  ExpenseData(
+                    expence: false,
+                    number: userIncome,
+                  ),
+                  const SizedBox(width: 20),
+                ],
+              );
+            },
           ),
           const SizedBox(height: 11),
           Row(
@@ -173,22 +177,7 @@ class _HomePage extends StatelessWidget {
               if (state is ExpensesLoadedState) {
                 if (state.expenses.isEmpty) return const NoData();
 
-                return Expanded(
-                  child: ListView(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 20,
-                    ),
-                    children: [
-                      ...List.generate(
-                        state.expenses.length,
-                        (index) {
-                          return ExpenseCard(expense: state.expenses[index]);
-                        },
-                      ),
-                    ],
-                  ),
-                );
+                return ExpensesList(expenses: state.expenses);
               }
 
               return Container();

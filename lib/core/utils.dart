@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../features/expense/models/expense.dart';
+
 bool onboarding = true;
 String userName = '';
 String userCurrency = '\$';
@@ -34,4 +36,22 @@ Future<void> saveUser(String name, String currency) async {
 
 int getCurrentTimestamp() {
   return DateTime.now().millisecondsSinceEpoch ~/ 1000;
+}
+
+void getExpenses(List<Expense> expenses) {
+  int expense = 0;
+  int income = 0;
+  for (Expense e in expenses) {
+    if (e.expense) {
+      expense = expense + e.amount;
+    } else {
+      income = income + e.amount;
+    }
+  }
+  log(expense.toString());
+  log(income.toString());
+  userExpense = expense;
+  userIncome = income;
+  log('userExpense = $userExpense');
+  log('userIncome = $userIncome');
 }
