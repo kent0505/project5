@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'app_colors.dart';
+
 final theme = ThemeData(
   useMaterial3: false,
   primarySwatch: Colors.grey,
@@ -9,7 +11,7 @@ final theme = ThemeData(
   //   selectionColor: AppColors.accent,
   //   selectionHandleColor: AppColors.accent,
   // ),
-  // colorScheme: ColorScheme.fromSwatch(
-  //   accentColor: AppColors.accent,
-  // ),
+  colorScheme: ColorScheme.fromSwatch(
+    accentColor: AppColors.activeNavBar,
+  ),
 );

@@ -30,3 +30,7 @@ Future<void> saveUser(String name, String currency) async {
   prefs.setString('userCurrency', currency);
   prefs.setBool('onboarding', false);
 }
+
+int getCurrentTimestamp() {
+  return DateTime.now().millisecondsSinceEpoch ~/ 1000;
+}
