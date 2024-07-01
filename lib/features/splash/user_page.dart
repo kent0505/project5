@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/config/app_colors.dart';
+import '../../core/utils.dart';
 import '../../core/widgets/buttons/primary_button.dart';
 import '../../core/widgets/custom_scaffold.dart';
 
@@ -31,13 +32,12 @@ class _UserPageState extends State<UserPage> {
   }
 
   void onGo() async {
-    // await saveUser(
-    //   controller1.text,
-    //   controller2.text,
-    // ).then((value) {
-    //   context.go('/home');
-    // });
-    context.go('/home');
+    await saveUser(
+      controller1.text,
+      controller2.text,
+    ).then((value) {
+      context.go('/home');
+    });
   }
 
   @override
@@ -190,7 +190,9 @@ class _CurrencySelectButtonState extends State<_CurrencySelectButton> {
                 const SizedBox(width: 40),
                 const Spacer(),
                 Text(
-                  '(${widget.controller.text})',
+                  widget.controller.text.isNotEmpty
+                      ? '(${widget.controller.text})'
+                      : '',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -218,7 +220,7 @@ class _CurrencySelectButtonState extends State<_CurrencySelectButton> {
             ),
           ),
         ),
-        SizedBox(height: expanded ? 0 : 110),
+        SizedBox(height: expanded ? 0 : 130 + 45),
         if (expanded) ...[
           const SizedBox(height: 10),
           _CurrencyButton(
@@ -240,6 +242,27 @@ class _CurrencySelectButtonState extends State<_CurrencySelectButton> {
                 widget.onChanged();
                 expanded = false;
               });
+            },
+          ),
+          SizedBox(
+            height: 20,
+            child: Row(
+              children: [
+                Text(
+                  'Your version...',
+                  style: TextStyle(
+                    color: AppColors.white50,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          _YourVersionField(
+            controller: widget.controller,
+            onChanged: () {
+              widget.onChanged();
             },
           ),
         ],
@@ -283,6 +306,55 @@ class _CurrencyButton extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _YourVersionField extends StatelessWidget {
+  const _YourVersionField({
+    required this.controller,
+    required this.onChanged,
+  });
+
+  final TextEditingController controller;
+  final void Function() onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 45,
+      decoration: BoxDecoration(
+        color: AppColors.card,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: TextField(
+        controller: controller,
+        textAlign: TextAlign.center,
+        textCapitalization: TextCapitalization.sentences,
+        style: const TextStyle(
+          color: Colors.white,
+        ),
+        decoration: InputDecoration(
+          hintText: 'Currency',
+          hintStyle: TextStyle(
+            color: AppColors.white50,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent),
+          ),
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent),
+          ),
+        ),
+        onTapOutside: (event) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
+        onChanged: (value) {
+          onChanged();
+        },
       ),
     );
   }
