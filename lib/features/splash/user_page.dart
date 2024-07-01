@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -20,6 +21,8 @@ class _UserPageState extends State<UserPage> {
   void onChanged() {
     setState(() {
       if (controller1.text.isEmpty) {
+        active = false;
+      } else if (controller2.text.isEmpty) {
         active = false;
       } else {
         active = true;
@@ -52,7 +55,7 @@ class _UserPageState extends State<UserPage> {
         child: Column(
           children: [
             const SizedBox(height: 127),
-            const Spacer(),
+            const Spacer(flex: 2),
             Row(
               children: [
                 Text(
@@ -80,7 +83,10 @@ class _UserPageState extends State<UserPage> {
               ),
             ),
             const SizedBox(height: 6),
-            const _CurrencSelectButton(),
+            _CurrencySelectButton(
+              controller: controller2,
+              onChanged: onChanged,
+            ),
             const Spacer(),
             PrimaryButton(
               title: 'Go',
@@ -102,7 +108,7 @@ class _NameField extends StatelessWidget {
   });
 
   final TextEditingController controller;
-  final Function() onChanged;
+  final void Function() onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -144,23 +150,140 @@ class _NameField extends StatelessWidget {
   }
 }
 
-class _CurrencSelectButton extends StatelessWidget {
-  const _CurrencSelectButton();
+class _CurrencySelectButton extends StatefulWidget {
+  const _CurrencySelectButton({
+    required this.controller,
+    required this.onChanged,
+  });
+
+  final TextEditingController controller;
+  final void Function() onChanged;
+
+  @override
+  State<_CurrencySelectButton> createState() => _CurrencySelectButtonState();
+}
+
+class _CurrencySelectButtonState extends State<_CurrencySelectButton> {
+  bool expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CupertinoButton(
+          onPressed: () {
+            setState(() {
+              expanded = !expanded;
+            });
+          },
+          padding: EdgeInsets.zero,
+          child: Container(
+            height: 60,
+            width: MediaQuery.of(context).size.width > 400 ? 400 : null,
+            decoration: BoxDecoration(
+              color: AppColors.card,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              children: [
+                const SizedBox(width: 40),
+                const Spacer(),
+                Text(
+                  '(${widget.controller.text})',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'SFPro',
+                  ),
+                ),
+                const Spacer(),
+                SizedBox(
+                  width: 25,
+                  child: AnimatedRotation(
+                    turns: expanded ? 1 / 2 : 1,
+                    duration: const Duration(milliseconds: 300),
+                    child: RotatedBox(
+                      quarterTurns: 1,
+                      child: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        color: AppColors.white50,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 15),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: expanded ? 0 : 110),
+        if (expanded) ...[
+          const SizedBox(height: 10),
+          _CurrencyButton(
+            title: '(\$)',
+            onPressed: () {
+              setState(() {
+                widget.controller.text = '\$';
+                widget.onChanged();
+                expanded = false;
+              });
+            },
+          ),
+          const SizedBox(height: 10),
+          _CurrencyButton(
+            title: '(€)',
+            onPressed: () {
+              setState(() {
+                widget.controller.text = '€';
+                widget.onChanged();
+                expanded = false;
+              });
+            },
+          ),
+        ],
+      ],
+    );
+  }
+}
+
+class _CurrencyButton extends StatelessWidget {
+  const _CurrencyButton({
+    required this.title,
+    required this.onPressed,
+  });
+
+  final String title;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: 45,
       width: MediaQuery.of(context).size.width > 400 ? 400 : null,
       decoration: BoxDecoration(
         color: AppColors.card,
         borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          width: 2,
+          color: const Color(0xff500018),
+        ),
       ),
-      // child: const Row(
-      //   children: [
-      //     Spacer(),
-      //   ],
-      // ),
+      child: CupertinoButton(
+        onPressed: onPressed,
+        padding: EdgeInsets.zero,
+        child: Center(
+          child: Text(
+            title,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
