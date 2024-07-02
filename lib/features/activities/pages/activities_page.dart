@@ -89,8 +89,8 @@ class _ActivitiesPageState extends State<ActivitiesPage> {
                           if (controller.text == 'Day') ...[
                             BarChartCard(
                               title: getCurrentWeekDay(),
-                              incomeHeight: getHeight(dayIncomes),
-                              expenseHeight: getHeight(dayExpenses),
+                              incomeHeight: getHeight(dayIncomes, dayExpenses),
+                              expenseHeight: getHeight(dayExpenses, dayIncomes),
                             ),
                           ],
                           if (controller.text == 'Week') ...[
@@ -100,38 +100,52 @@ class _ActivitiesPageState extends State<ActivitiesPage> {
                               children: [
                                 BarChartCard(
                                   title: 'Mon',
-                                  incomeHeight: getHeight(w1Incomes),
-                                  expenseHeight: getHeight(w1Expenses),
+                                  incomeHeight:
+                                      getHeight(w1Incomes, w1Expenses),
+                                  expenseHeight:
+                                      getHeight(w1Expenses, w1Incomes),
                                 ),
                                 BarChartCard(
                                   title: 'Tue',
-                                  incomeHeight: getHeight(w2Incomes),
-                                  expenseHeight: getHeight(w2Expenses),
+                                  incomeHeight:
+                                      getHeight(w2Incomes, w2Expenses),
+                                  expenseHeight:
+                                      getHeight(w2Expenses, w2Incomes),
                                 ),
                                 BarChartCard(
                                   title: 'Wed',
-                                  incomeHeight: getHeight(w3Incomes),
-                                  expenseHeight: getHeight(w3Expenses),
+                                  incomeHeight:
+                                      getHeight(w3Incomes, w3Expenses),
+                                  expenseHeight:
+                                      getHeight(w3Expenses, w3Incomes),
                                 ),
                                 BarChartCard(
                                   title: 'Thu',
-                                  incomeHeight: getHeight(w4Incomes),
-                                  expenseHeight: getHeight(w4Expenses),
+                                  incomeHeight:
+                                      getHeight(w4Incomes, w4Expenses),
+                                  expenseHeight:
+                                      getHeight(w4Expenses, w4Incomes),
                                 ),
                                 BarChartCard(
                                   title: 'Fri',
-                                  incomeHeight: getHeight(w5Incomes),
-                                  expenseHeight: getHeight(w5Expenses),
+                                  incomeHeight:
+                                      getHeight(w5Incomes, w5Expenses),
+                                  expenseHeight:
+                                      getHeight(w5Expenses, w5Incomes),
                                 ),
                                 BarChartCard(
                                   title: 'Sat',
-                                  incomeHeight: getHeight(w6Incomes),
-                                  expenseHeight: getHeight(w6Expenses),
+                                  incomeHeight:
+                                      getHeight(w6Incomes, w6Expenses),
+                                  expenseHeight:
+                                      getHeight(w6Expenses, w6Incomes),
                                 ),
                                 BarChartCard(
                                   title: 'Sun',
-                                  incomeHeight: getHeight(w7Incomes),
-                                  expenseHeight: getHeight(w7Expenses),
+                                  incomeHeight:
+                                      getHeight(w7Incomes, w7Expenses),
+                                  expenseHeight:
+                                      getHeight(w7Expenses, w7Incomes),
                                 ),
                               ],
                             ),
@@ -143,23 +157,31 @@ class _ActivitiesPageState extends State<ActivitiesPage> {
                               children: [
                                 BarChartCard(
                                   title: 'w 1',
-                                  incomeHeight: getHeight(m1Incomes),
-                                  expenseHeight: getHeight(m1Expenses),
+                                  incomeHeight:
+                                      getHeight(m1Incomes, m1Expenses),
+                                  expenseHeight:
+                                      getHeight(m1Expenses, m1Incomes),
                                 ),
                                 BarChartCard(
                                   title: 'w 2',
-                                  incomeHeight: getHeight(m2Incomes),
-                                  expenseHeight: getHeight(m2Expenses),
+                                  incomeHeight:
+                                      getHeight(m2Incomes, m2Expenses),
+                                  expenseHeight:
+                                      getHeight(m2Expenses, m2Incomes),
                                 ),
                                 BarChartCard(
                                   title: 'w 3',
-                                  incomeHeight: getHeight(m3Incomes),
-                                  expenseHeight: getHeight(m3Expenses),
+                                  incomeHeight:
+                                      getHeight(m3Incomes, m3Expenses),
+                                  expenseHeight:
+                                      getHeight(m3Expenses, m3Incomes),
                                 ),
                                 BarChartCard(
                                   title: 'w 4',
-                                  incomeHeight: getHeight(m4Incomes),
-                                  expenseHeight: getHeight(m4Expenses),
+                                  incomeHeight:
+                                      getHeight(m4Incomes, m4Expenses),
+                                  expenseHeight:
+                                      getHeight(m4Expenses, m4Incomes),
                                 ),
                               ],
                             ),
@@ -171,8 +193,10 @@ class _ActivitiesPageState extends State<ActivitiesPage> {
                               children: [
                                 BarChartCard(
                                   title: 'y 1',
-                                  incomeHeight: getHeight(y1Incomes),
-                                  expenseHeight: getHeight(y1Expenses),
+                                  incomeHeight:
+                                      getHeight(y1Incomes, y1Expenses),
+                                  expenseHeight:
+                                      getHeight(y1Expenses, y1Incomes),
                                 ),
                               ],
                             ),

@@ -46,29 +46,6 @@ String getCurrentWeekDay() {
   return currentWeekdayName;
 }
 
-// double getDayExpensesHeight() {
-//   totalDayExpenses = 0;
-//   totalDayIncomes = 0;
-//   List<Expense> currentDayExpenses = [];
-//   for (Expense expense in expensesList) {
-//     DateTime date = DateTime.fromMillisecondsSinceEpoch(expense.id * 1000);
-//     if (date.day == DateTime.now().day) {
-//       currentDayExpenses.add(expense);
-//     }
-//   }
-//   for (Expense expense in currentDayExpenses) {
-//     if (expense.expense) {
-//       totalDayExpenses = totalDayExpenses + expense.amount;
-//     } else {
-//       totalDayIncomes = totalDayIncomes + expense.amount;
-//     }
-//   }
-//   if (totalDayExpenses == 0) return 7;
-//   if (totalDayIncomes == 0) return 100 + 40;
-//   double percent = (totalDayIncomes / totalDayExpenses) * 100 + 40;
-//   return percent;
-// }
-
 List<Expense> expensesList = [];
 int dayExpenses = 0;
 int w1Expenses = 0;
@@ -100,7 +77,33 @@ int y1Incomes = 0;
 
 void calculateExpenses() {
   dayExpenses = 0;
+  w1Expenses = 0;
+  w2Expenses = 0;
+  w3Expenses = 0;
+  w4Expenses = 0;
+  w5Expenses = 0;
+  w6Expenses = 0;
+  w7Expenses = 0;
+  m1Expenses = 0;
+  m2Expenses = 0;
+  m3Expenses = 0;
+  m4Expenses = 0;
+  y1Expenses = 0;
+
   dayIncomes = 0;
+  w1Incomes = 0;
+  w2Incomes = 0;
+  w3Incomes = 0;
+  w4Incomes = 0;
+  w5Incomes = 0;
+  w6Incomes = 0;
+  w7Incomes = 0;
+  m1Incomes = 0;
+  m2Incomes = 0;
+  m3Incomes = 0;
+  m4Incomes = 0;
+  y1Incomes = 0;
+
   for (Expense expense in expensesList) {
     DateTime date = DateTime.fromMillisecondsSinceEpoch(expense.id * 1000);
     if (expense.expense) {
@@ -154,10 +157,11 @@ void calculateExpenses() {
   log('CURRENT DAY INCOMES = $dayIncomes');
 }
 
-double getHeight(int number) {
-  if (number == 0) return 7;
-  double percent = (number / 60) * 100;
-  return percent;
+double getHeight(int a, int b) {
+  if (a == 0) return 7;
+  if (b == 0) return 7;
+  if (a > b) return 100 + 50;
+  return (a / b) * 100 + (a / b) * 50;
 }
 
 int getWeekNumber(DateTime date) {
