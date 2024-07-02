@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:project5/features/home/widgets/news_list.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../../../core/utils.dart';
@@ -13,21 +14,11 @@ import '../widgets/expense_data.dart';
 import '../widgets/expenses_list.dart';
 import '../widgets/nav_bar.dart';
 import '../widgets/no_data.dart';
+import '../widgets/tab_card.dart';
 import 'settings_page.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<ExpenseBloc>().add(GetExpensesEvent());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +32,7 @@ class _HomePageState extends State<HomePage> {
 
                 if (state is HomeActivities) return const ActivitiesPage();
 
-                return const _HomePage();
+                return const _Home();
               },
             ),
             const NavBar(),
@@ -52,8 +43,27 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class _HomePage extends StatelessWidget {
-  const _HomePage();
+class _Home extends StatefulWidget {
+  const _Home();
+
+  @override
+  State<_Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<_Home> {
+  bool history = true;
+
+  void changeTab() {
+    setState(() {
+      history = !history;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<ExpenseBloc>().add(GetExpensesEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -171,13 +181,32 @@ class _HomePage extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 35),
             color: AppColors.white50,
           ),
-          const SizedBox(height: 5),
+          const SizedBox(height: 13),
+          Row(
+            children: [
+              const SizedBox(width: 18),
+              TabCard(
+                title: 'History',
+                selected: history,
+                onPressed: changeTab,
+              ),
+              const SizedBox(width: 8),
+              TabCard(
+                title: 'News',
+                selected: !history,
+                onPressed: changeTab,
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
           BlocBuilder<ExpenseBloc, ExpenseState>(
             builder: (context, state) {
               if (state is ExpensesLoadedState) {
                 if (state.expenses.isEmpty) return const NoData();
 
-                return ExpensesList(expenses: state.expenses);
+                if (history) return ExpensesList(expenses: state.expenses);
+
+                return const NewsList();
               }
 
               return Container();
