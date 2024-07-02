@@ -1,11 +1,14 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project5/features/expense/bloc/expense_bloc.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../../../core/utils.dart';
 import '../../../core/widgets/custom/custom_scaffold.dart';
 import '../../../core/widgets/page_title.dart';
+import '../widgets/bar_chart.dart';
 import '../widgets/income_info_card.dart';
 import '../widgets/period_card.dart';
 import '../widgets/total_card.dart';
@@ -29,6 +32,12 @@ class _ActivitiesPageState extends State<ActivitiesPage> {
   void onChanged() {
     log(controller.text);
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    controller.text = 'Day';
   }
 
   @override
@@ -63,24 +72,74 @@ class _ActivitiesPageState extends State<ActivitiesPage> {
                   ],
                 ),
                 const SizedBox(height: 5),
-                Container(
-                  height: 202,
-                  width: MediaQuery.of(context).size.width > 400 ? 400 : null,
-                  padding: const EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                    color: AppColors.card,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Column(
-                    children: [
-                      // BarChart(
-                      //   BarChartData(
-                      //     maxY: 200,
-                      //     minY: 0,
-                      //   ),
-                      // ),
-                    ],
-                  ),
+                BlocBuilder<ExpenseBloc, ExpenseState>(
+                  builder: (context, state) {
+                    return Container(
+                      height: 202,
+                      width:
+                          MediaQuery.of(context).size.width > 400 ? 400 : null,
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        color: AppColors.card,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          if (controller.text == 'Day') ...[
+                            BarChartCard(
+                              title: getCurrentWeekDay(),
+                              incomeHeight: getDayExpensesHeight(),
+                              expenseHeight: getDayIncomesHeight(),
+                            ),
+                          ],
+                          if (controller.text == 'Week') ...[
+                            const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                BarChartCard(
+                                  title: 'Sun',
+                                  incomeHeight: 150,
+                                  expenseHeight: 50,
+                                ),
+                                BarChartCard(
+                                  title: 'Mon',
+                                  incomeHeight: 100,
+                                  expenseHeight: 10,
+                                ),
+                                BarChartCard(
+                                  title: 'Tue',
+                                  incomeHeight: 150,
+                                  expenseHeight: 50,
+                                ),
+                                BarChartCard(
+                                  title: 'Wed',
+                                  incomeHeight: 150,
+                                  expenseHeight: 50,
+                                ),
+                                BarChartCard(
+                                  title: 'Thu',
+                                  incomeHeight: 150,
+                                  expenseHeight: 50,
+                                ),
+                                BarChartCard(
+                                  title: 'Fri',
+                                  incomeHeight: 150,
+                                  expenseHeight: 50,
+                                ),
+                                BarChartCard(
+                                  title: 'Sat',
+                                  incomeHeight: 150,
+                                  expenseHeight: 50,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ],
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(height: 18),
                 PeriodCard(
