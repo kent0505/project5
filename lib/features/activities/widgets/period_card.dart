@@ -33,7 +33,7 @@ class _PeriodCardState extends State<PeriodCard> {
           padding: EdgeInsets.zero,
           child: Container(
             height: 60,
-            width: MediaQuery.of(context).size.width > 400 ? 400 : null,
+            // width: MediaQuery.of(context).size.width > 400 ? 400 : null,
             decoration: BoxDecoration(
               color: AppColors.card,
               borderRadius: BorderRadius.circular(8),
@@ -143,7 +143,7 @@ class _PeriodButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 45,
-      width: MediaQuery.of(context).size.width > 400 ? 400 : null,
+      // width: MediaQuery.of(context).size.width > 400 ? 400 : null,
       decoration: BoxDecoration(
         color: AppColors.card,
         borderRadius: BorderRadius.circular(8),

@@ -191,6 +191,7 @@ class _ExpenseEditPageState extends State<ExpenseEditPage> {
                   active: active,
                   onPressed: onEdit,
                 ),
+                const SizedBox(height: 23),
               ],
             ),
           ),

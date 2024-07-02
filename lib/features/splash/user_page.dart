@@ -54,49 +54,54 @@ class _UserPageState extends State<UserPage> {
     return CustomScaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Column(
-          children: [
-            const SizedBox(height: 127),
-            const Spacer(flex: 2),
-            Row(
-              children: [
-                Text(
-                  'Enter your name...',
-                  style: TextStyle(
-                    color: AppColors.white50,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                  ),
+        child: Center(
+          child: Column(
+            children: [
+              const SizedBox(height: 127),
+              const Spacer(flex: 2),
+              SizedBox(
+                // width: MediaQuery.of(context).size.width > 400 ? 400 : null,
+                child: Row(
+                  children: [
+                    Text(
+                      'Enter your name...',
+                      style: TextStyle(
+                        color: AppColors.white50,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            const SizedBox(height: 6),
-            _NameField(
-              controller: controller1,
-              onChanged: onChanged,
-            ),
-            const SizedBox(height: 14),
-            const Text(
-              'What currency do you use?',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
               ),
-            ),
-            const SizedBox(height: 6),
-            _CurrencySelectButton(
-              controller: controller2,
-              onChanged: onChanged,
-            ),
-            const Spacer(),
-            PrimaryButton(
-              title: 'Go',
-              active: active,
-              onPressed: onGo,
-            ),
-            const SizedBox(height: 67),
-          ],
+              const SizedBox(height: 6),
+              _NameField(
+                controller: controller1,
+                onChanged: onChanged,
+              ),
+              const SizedBox(height: 14),
+              const Text(
+                'What currency do you use?',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 6),
+              _CurrencySelectButton(
+                controller: controller2,
+                onChanged: onChanged,
+              ),
+              const Spacer(),
+              PrimaryButton(
+                title: 'Go',
+                active: active,
+                onPressed: onGo,
+              ),
+              const SizedBox(height: 67),
+            ],
+          ),
         ),
       ),
     );
@@ -116,6 +121,7 @@ class _NameField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 60,
+      // width: MediaQuery.of(context).size.width > 400 ? 400 : null,
       decoration: BoxDecoration(
         color: AppColors.card,
         borderRadius: BorderRadius.circular(12),
@@ -182,7 +188,7 @@ class _CurrencySelectButtonState extends State<_CurrencySelectButton> {
           padding: EdgeInsets.zero,
           child: Container(
             height: 60,
-            width: MediaQuery.of(context).size.width > 400 ? 400 : null,
+            // width: MediaQuery.of(context).size.width > 400 ? 400 : null,
             decoration: BoxDecoration(
               color: AppColors.card,
               borderRadius: BorderRadius.circular(8),
@@ -280,7 +286,7 @@ class _CurrencyButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 45,
-      width: MediaQuery.of(context).size.width > 400 ? 400 : null,
+      // width: MediaQuery.of(context).size.width > 400 ? 400 : null,
       decoration: BoxDecoration(
         color: AppColors.card,
         borderRadius: BorderRadius.circular(8),

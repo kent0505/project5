@@ -164,6 +164,7 @@ class _ExpenseAddPageState extends State<ExpenseAddPage> {
                   active: active,
                   onPressed: onAdd,
                 ),
+                const SizedBox(height: 23),
               ],
             ),
           ),
