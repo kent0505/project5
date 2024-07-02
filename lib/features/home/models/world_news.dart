@@ -40,4 +40,62 @@ List<WorldNews> worldNews = [
         'Under the new energy price cap, the typical annual dual-fuel bill paid by direct debit is now £1,568 per year.\n\nHowever, while bills are at their lowest for two years, they remain about £400 higher than they were three years ago.',
     ago: '10h ago',
   ),
+  WorldNews(
+    image:
+        'https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2156454374.jpg',
+    title: 'French election results boost stocks and the euro',
+    content:
+        'French stocks and the euro rallied Monday after results from the first round of elections suggested the far right will inflict a heavy defeat on President Emmanuel Macron but fall short of winning an outright majority in parliament.\n\nFrance\'s CAC 40 index, which represents 40 of the biggest companies listed in Paris, rose 2.7% at the open. The index closed 1% higher on the day but is still almost 6% below its level before Macron called the snap election on June 9.',
+    ago: '12h ago',
+  ),
+  WorldNews(
+    image:
+        'https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-1735541439-20240318145303576.jpg',
+    title: 'The average Wall Street bonus dipped 2% last year, to \$176,500',
+    content:
+        'Last year wasn\'t the most lucrative for Wall Street bankers, but their bonus payouts still easily trounced US median household income.\n\nThe average Wall Street bonus for 2023 was \$176,500, according to estimates that will be released Tuesday morning by New York State Comptroller Thomas DiNapoli. That\'s down 2% from the \$180,000 recorded in 2022. Both those averages were well below the \$240,000 paid out in 2021.',
+    ago: '14h ago',
+  ),
+  WorldNews(
+    image:
+        'https://crypto.news/app/uploads/2023/07/MarketAcross-and-Chainlink-Labs-Establish-Channel-Partnership-To-Support-Chainlink-BUILD-Members04.jpg.webp',
+    title: 'Chainlink climbs as Hedera tops developer activity leaderboard',
+    content:
+        'Chainlink saw a considerable spike in developer activity in June as the decentralized oracle network climbed into second spot behind Hedera, according to data by market intelligence platform Santiment.\n\nAccording to Santiment analysis, Hedera remained crypto\'s top coins in terms of GitHub activity. However, Chainlink developer data from its GitHub repository showed a surge in the number of events in the past 30 days, with the project rising to 2nd.',
+    ago: '15h ago',
+  ),
+  WorldNews(
+    image:
+        'https://crypto.news/app/uploads/2024/03/crypto-news-USDC-option03.webp',
+    title: 'Circle wins Europe\'s first stablecoin license via MiCA',
+    content:
+        'Circle has authorization to market its USDC stablecoin services across Europe under the bloc\'s MiCA laws.\n\nStablecoin issuer Circle is the first stablecoin company to achieve compliance with the European Union\'s (EU) Markets in Crypto Asset (MiCA) policies designed to oversee digital asset business operations.\n\nHaving obtained an Electronic Money Institution (EMI) license from French regulators, CEO Jeremy Allaire said Circle Mint France will manage EURC and USDC issuance for European users. ',
+    ago: '17h ago',
+  ),
+  WorldNews(
+    image:
+        'https://crypto.news/app/uploads/2023/11/crypto-news-io.net-Partner-With-Render-Network06.webp',
+    title: 'Injective price to reach \$100 and Render to hit \$150: analyst',
+    content:
+        'Injective (INJ) and Render Token (RNDR) prices have remained in a bear market since March and prior attempts to bounce faced strong resistance. Render was trading at \$7.5605 on Monday, down by over 44% from its highest level this year, giving it a market cap of over \$2.9 billion.\n\nInjective, the venture-backed blockchain that made waves in 2023, has crashed by over 56% from the year-to-date high. This drop has brought its market cap from over \$4.86 billion in March to \$2.14 billion. ',
+    ago: '18h ago',
+  ),
+  WorldNews(
+    image:
+        'https://crypto.news/app/uploads/2024/04/crypto-news-Kanga-Moon-option03.webp',
+    title:
+        'Bullish July predicted for ETH; these ERC-20 memecoins set to skyrocket',
+    content:
+        'Popular analyst Captain Faibik forecasts a bullish July for Ethereum, with ERC-20 meme coins including KangaMoon expected to surge significantly.\n\nIn an earlier X post by Captain Faibik, the popular crypto analyst hinted at an extremely bullish July for Ethereum (ETH) coin. As expected, Ethereum is positioned for more bulls due to its long consolidation and its upcoming rally together with Bitcoin.',
+    ago: '18h ago',
+  ),
+  WorldNews(
+    image:
+        'https://crypto.news/app/uploads/2024/06/crypto-news-Mt-Gox-announced-the-start-of-payments-option01-1380x820.webp',
+    title:
+        'PayPal-backed fintech startup Mesh teams up with Italy\ns crypto wallet Conio',
+    content:
+        'Backed by PayPal, fintech connection layer Mesh has unveiled a partnership with Italy\'s crypto wallet Conio.\n\nAmerican fintech startup Mesh has announced a partnership with Italian crypto wallet Conio, aiming to broaden its reach to multiple crypto trading platforms such as Coinbase and Binance. The collaboration will enable Conio’s 430,000 Italian customers to access 10 crypto exchanges and withdraw funds into their Conio wallets, the report says.',
+    ago: '22h ago',
+  ),
 ];

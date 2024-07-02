@@ -208,11 +208,11 @@ class _CurrencySelectButtonState extends State<_CurrencySelectButton> {
                   child: AnimatedRotation(
                     turns: expanded ? 1 / 2 : 1,
                     duration: const Duration(milliseconds: 300),
-                    child: RotatedBox(
+                    child: const RotatedBox(
                       quarterTurns: 1,
                       child: Icon(
                         Icons.arrow_forward_ios_rounded,
-                        color: AppColors.white50,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -299,6 +299,7 @@ class _CurrencyButton extends StatelessWidget {
               color: Colors.white,
               fontSize: 16,
               fontWeight: FontWeight.w600,
+              fontFamily: 'SFPro',
             ),
           ),
         ),
