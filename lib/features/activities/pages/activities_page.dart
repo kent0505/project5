@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project5/core/utils.dart';
 import 'package:project5/features/activities/widgets/income_info_card.dart';
+import 'package:project5/features/activities/widgets/total_card.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../../../core/widgets/custom/custom_scaffold.dart';
@@ -38,7 +40,7 @@ class ActivitiesPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
-            const SizedBox(height: 17),
+            const SizedBox(height: 18),
             Container(
               height: 60,
               width: MediaQuery.of(context).size.width > 400 ? 400 : null,
@@ -51,7 +53,7 @@ class ActivitiesPage extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  'Cash (\$)',
+                  'Cash ($userCurrency)',
                   style: TextStyle(
                     color: AppColors.white50,
                     fontSize: 16,
@@ -64,6 +66,21 @@ class ActivitiesPage extends StatelessWidget {
             const IncomeInfoCard(income: true),
             const SizedBox(height: 8),
             const IncomeInfoCard(income: false),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Text(
+                  'Total amount ($userCurrency)',
+                  style: TextStyle(
+                    color: AppColors.white50,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 5),
+            const TotalCard(),
           ],
         ),
       ),

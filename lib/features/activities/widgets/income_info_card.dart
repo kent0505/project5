@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/config/app_colors.dart';
+import '../../../core/utils.dart';
 
 class IncomeInfoCard extends StatelessWidget {
   const IncomeInfoCard({super.key, required this.income});
@@ -31,9 +32,9 @@ class IncomeInfoCard extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          const Text(
-            '5000\$',
-            style: TextStyle(
+          Text(
+            income ? '$userIncome$userCurrency' : '$userExpense$userCurrency',
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 16,
               fontWeight: FontWeight.w500,

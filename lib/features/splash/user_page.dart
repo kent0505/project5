@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:project5/core/widgets/your_version_text.dart';
 
 import '../../core/config/app_colors.dart';
 import '../../core/utils.dart';
 import '../../core/widgets/buttons/primary_button.dart';
 import '../../core/widgets/custom/custom_scaffold.dart';
 import '../../core/widgets/your_version_field.dart';
+import '../../core/widgets/your_version_text.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key});

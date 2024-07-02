@@ -82,11 +82,20 @@ class _NewsCard extends StatelessWidget {
             children: [
               const Spacer(),
               Text(
-                news.date,
+                news.ago,
                 style: TextStyle(
                   color: AppColors.white50,
                   fontSize: 10,
                   fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(width: 2),
+              Container(
+                height: 4,
+                width: 4,
+                decoration: BoxDecoration(
+                  color: AppColors.white50,
+                  borderRadius: BorderRadius.circular(2),
                 ),
               ),
             ],
