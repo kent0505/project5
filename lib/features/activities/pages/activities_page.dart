@@ -2,12 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project5/features/expense/bloc/expense_bloc.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../../../core/utils.dart';
 import '../../../core/widgets/custom/custom_scaffold.dart';
 import '../../../core/widgets/page_title.dart';
+import '../../expense/bloc/expense_bloc.dart';
 import '../widgets/bar_chart.dart';
 import '../widgets/income_info_card.dart';
 import '../widgets/period_card.dart';
@@ -89,49 +89,90 @@ class _ActivitiesPageState extends State<ActivitiesPage> {
                           if (controller.text == 'Day') ...[
                             BarChartCard(
                               title: getCurrentWeekDay(),
-                              incomeHeight: getDayExpensesHeight(),
-                              expenseHeight: getDayIncomesHeight(),
+                              incomeHeight: getHeight(dayIncomes),
+                              expenseHeight: getHeight(dayExpenses),
                             ),
                           ],
                           if (controller.text == 'Week') ...[
-                            const Row(
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 BarChartCard(
-                                  title: 'Sun',
-                                  incomeHeight: 150,
-                                  expenseHeight: 50,
-                                ),
-                                BarChartCard(
                                   title: 'Mon',
-                                  incomeHeight: 100,
-                                  expenseHeight: 10,
+                                  incomeHeight: getHeight(w1Incomes),
+                                  expenseHeight: getHeight(w1Expenses),
                                 ),
                                 BarChartCard(
                                   title: 'Tue',
-                                  incomeHeight: 150,
-                                  expenseHeight: 50,
+                                  incomeHeight: getHeight(w2Incomes),
+                                  expenseHeight: getHeight(w2Expenses),
                                 ),
                                 BarChartCard(
                                   title: 'Wed',
-                                  incomeHeight: 150,
-                                  expenseHeight: 50,
+                                  incomeHeight: getHeight(w3Incomes),
+                                  expenseHeight: getHeight(w3Expenses),
                                 ),
                                 BarChartCard(
                                   title: 'Thu',
-                                  incomeHeight: 150,
-                                  expenseHeight: 50,
+                                  incomeHeight: getHeight(w4Incomes),
+                                  expenseHeight: getHeight(w4Expenses),
                                 ),
                                 BarChartCard(
                                   title: 'Fri',
-                                  incomeHeight: 150,
-                                  expenseHeight: 50,
+                                  incomeHeight: getHeight(w5Incomes),
+                                  expenseHeight: getHeight(w5Expenses),
                                 ),
                                 BarChartCard(
                                   title: 'Sat',
-                                  incomeHeight: 150,
-                                  expenseHeight: 50,
+                                  incomeHeight: getHeight(w6Incomes),
+                                  expenseHeight: getHeight(w6Expenses),
+                                ),
+                                BarChartCard(
+                                  title: 'Sun',
+                                  incomeHeight: getHeight(w7Incomes),
+                                  expenseHeight: getHeight(w7Expenses),
+                                ),
+                              ],
+                            ),
+                          ],
+                          if (controller.text == 'Month') ...[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                BarChartCard(
+                                  title: 'w 1',
+                                  incomeHeight: getHeight(m1Incomes),
+                                  expenseHeight: getHeight(m1Expenses),
+                                ),
+                                BarChartCard(
+                                  title: 'w 2',
+                                  incomeHeight: getHeight(m2Incomes),
+                                  expenseHeight: getHeight(m2Expenses),
+                                ),
+                                BarChartCard(
+                                  title: 'w 3',
+                                  incomeHeight: getHeight(m3Incomes),
+                                  expenseHeight: getHeight(m3Expenses),
+                                ),
+                                BarChartCard(
+                                  title: 'w 4',
+                                  incomeHeight: getHeight(m4Incomes),
+                                  expenseHeight: getHeight(m4Expenses),
+                                ),
+                              ],
+                            ),
+                          ],
+                          if (controller.text == 'Year') ...[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                BarChartCard(
+                                  title: 'y 1',
+                                  incomeHeight: getHeight(y1Incomes),
+                                  expenseHeight: getHeight(y1Expenses),
                                 ),
                               ],
                             ),

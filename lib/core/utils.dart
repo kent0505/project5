@@ -10,12 +10,6 @@ String userCurrency = '\$';
 int userExpense = 0;
 int userIncome = 0;
 
-List<Expense> expensesList = [];
-int totalDayExpenses = 0;
-int totalDayIncomes = 0;
-int dayExpensesHeight = 0;
-int dayIncomesHeight = 0;
-
 Future<void> getData() async {
   final prefs = await SharedPreferences.getInstance();
   // await prefs.remove('onboarding');
@@ -52,39 +46,131 @@ String getCurrentWeekDay() {
   return currentWeekdayName;
 }
 
-void getDayExpenses() {
-  totalDayExpenses = 0;
-  totalDayIncomes = 0;
-  List<Expense> currentDayExpenses = [];
+// double getDayExpensesHeight() {
+//   totalDayExpenses = 0;
+//   totalDayIncomes = 0;
+//   List<Expense> currentDayExpenses = [];
+//   for (Expense expense in expensesList) {
+//     DateTime date = DateTime.fromMillisecondsSinceEpoch(expense.id * 1000);
+//     if (date.day == DateTime.now().day) {
+//       currentDayExpenses.add(expense);
+//     }
+//   }
+//   for (Expense expense in currentDayExpenses) {
+//     if (expense.expense) {
+//       totalDayExpenses = totalDayExpenses + expense.amount;
+//     } else {
+//       totalDayIncomes = totalDayIncomes + expense.amount;
+//     }
+//   }
+//   if (totalDayExpenses == 0) return 7;
+//   if (totalDayIncomes == 0) return 100 + 40;
+//   double percent = (totalDayIncomes / totalDayExpenses) * 100 + 40;
+//   return percent;
+// }
+
+List<Expense> expensesList = [];
+int dayExpenses = 0;
+int w1Expenses = 0;
+int w2Expenses = 0;
+int w3Expenses = 0;
+int w4Expenses = 0;
+int w5Expenses = 0;
+int w6Expenses = 0;
+int w7Expenses = 0;
+int m1Expenses = 0;
+int m2Expenses = 0;
+int m3Expenses = 0;
+int m4Expenses = 0;
+int y1Expenses = 0;
+
+int dayIncomes = 0;
+int w1Incomes = 0;
+int w2Incomes = 0;
+int w3Incomes = 0;
+int w4Incomes = 0;
+int w5Incomes = 0;
+int w6Incomes = 0;
+int w7Incomes = 0;
+int m1Incomes = 0;
+int m2Incomes = 0;
+int m3Incomes = 0;
+int m4Incomes = 0;
+int y1Incomes = 0;
+
+void calculateExpenses() {
+  dayExpenses = 0;
+  dayIncomes = 0;
   for (Expense expense in expensesList) {
     DateTime date = DateTime.fromMillisecondsSinceEpoch(expense.id * 1000);
-    if (date.day == DateTime.now().day) {
-      currentDayExpenses.add(expense);
-    }
-  }
-  for (Expense expense in currentDayExpenses) {
     if (expense.expense) {
-      totalDayExpenses = totalDayExpenses + expense.amount;
+      if (date.day == DateTime.now().day) {
+        dayExpenses = dayExpenses + expense.amount;
+      }
+      if (date.weekday == DateTime.now().weekday) {
+        if (getWeekDay(date) == 1) w1Expenses = w1Expenses + expense.amount;
+        if (getWeekDay(date) == 2) w2Expenses = w2Expenses + expense.amount;
+        if (getWeekDay(date) == 3) w3Expenses = w3Expenses + expense.amount;
+        if (getWeekDay(date) == 4) w4Expenses = w4Expenses + expense.amount;
+        if (getWeekDay(date) == 5) w5Expenses = w5Expenses + expense.amount;
+        if (getWeekDay(date) == 6) w6Expenses = w6Expenses + expense.amount;
+        if (getWeekDay(date) == 7) w7Expenses = w7Expenses + expense.amount;
+      }
+      if (date.month == DateTime.now().month) {
+        if (getWeekNumber(date) == 1) m1Expenses = m1Expenses + expense.amount;
+        if (getWeekNumber(date) == 2) m2Expenses = m2Expenses + expense.amount;
+        if (getWeekNumber(date) == 3) m3Expenses = m3Expenses + expense.amount;
+        if (getWeekNumber(date) == 4) m4Expenses = m4Expenses + expense.amount;
+      }
+      if (date.year == DateTime.now().year) {
+        y1Expenses = y1Expenses + expense.amount;
+      }
     } else {
-      totalDayIncomes = totalDayIncomes + expense.amount;
+      if (date.day == DateTime.now().day) {
+        dayIncomes = dayIncomes + expense.amount;
+      }
+      if (date.weekday == DateTime.now().weekday) {
+        if (getWeekDay(date) == 1) w1Incomes = w1Incomes + expense.amount;
+        if (getWeekDay(date) == 2) w2Incomes = w2Incomes + expense.amount;
+        if (getWeekDay(date) == 3) w3Incomes = w3Incomes + expense.amount;
+        if (getWeekDay(date) == 4) w4Incomes = w4Incomes + expense.amount;
+        if (getWeekDay(date) == 5) w5Incomes = w5Incomes + expense.amount;
+        if (getWeekDay(date) == 6) w6Incomes = w6Incomes + expense.amount;
+        if (getWeekDay(date) == 7) w7Incomes = w7Incomes + expense.amount;
+      }
+      if (date.month == DateTime.now().month) {
+        if (getWeekNumber(date) == 1) m1Incomes = m1Incomes + expense.amount;
+        if (getWeekNumber(date) == 2) m2Incomes = m2Incomes + expense.amount;
+        if (getWeekNumber(date) == 3) m3Incomes = m3Incomes + expense.amount;
+        if (getWeekNumber(date) == 4) m4Incomes = m4Incomes + expense.amount;
+      }
+      if (date.year == DateTime.now().year) {
+        y1Incomes = y1Incomes + expense.amount;
+      }
     }
   }
+
+  log('CURRENT DAY EXPENSES = $dayExpenses');
+  log('CURRENT DAY INCOMES = $dayIncomes');
 }
 
-double getDayExpensesHeight() {
-  getDayExpenses();
-  if (totalDayExpenses == 0) return 7;
-  if (totalDayIncomes == 0) return 100 + 40;
-  double percent = (totalDayIncomes / totalDayExpenses) * 100 + 40;
+double getHeight(int number) {
+  if (number == 0) return 7;
+  double percent = (number / 60) * 100;
   return percent;
 }
 
-double getDayIncomesHeight() {
-  getDayExpenses();
-  if (totalDayExpenses == 0) return 100 + 40;
-  if (totalDayIncomes == 0) return 7;
-  double percent = (totalDayExpenses / totalDayIncomes) * 100 + 40;
-  return percent;
+int getWeekNumber(DateTime date) {
+  int firstDayWeekday = date.weekday;
+  int dayOfMonth = date.day;
+  int weekNumber = ((dayOfMonth + firstDayWeekday - 2) ~/ 7) + 1;
+  log('WEEK NUMBER = $weekNumber');
+  return weekNumber;
+}
+
+int getWeekDay(DateTime date) {
+  int day = date.weekday;
+  return day;
 }
 
 void getExpenses(List<Expense> expenses) {
@@ -99,10 +185,7 @@ void getExpenses(List<Expense> expenses) {
     }
     expensesList.add(e);
   }
-  log(expense.toString());
-  log(income.toString());
   userExpense = expense;
   userIncome = income;
-  log('userExpense = $userExpense');
-  log('userIncome = $userIncome');
+  calculateExpenses();
 }
